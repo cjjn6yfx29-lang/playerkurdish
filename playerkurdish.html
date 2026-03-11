@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yarigeha Kurdî</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
+        
+        body {
+            background-color: #0f172a;
+            color: white;
+            font-family: 'Noto Sans Arabic', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header-bar {
+            width: 100%;
+            background-color: #1e293b;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #334155;
+            margin-bottom: 2rem;
+        }
+
+        /* Small screen player container */
+        .player-container {
+            position: relative;
+            width: 95%;
+            max-width: 700px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid #334155;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        #streamFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Kurdish Flag Overlay on TV */
+        .flag-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 25px;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0.8;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .btn-action {
+            background: #2563eb;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            margin-top: 20px;
+            border-bottom: 4px solid #dc2626;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.05);
+        }
+
+        /* Gift Section */
+        .gift-section {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 20px;
+            border: 1px dashed #febd11;
+            width: 90%;
+            max-width: 400px;
+            margin-bottom: 40px;
+        }
+
+        .gift-flag {
+            width: 150px;
+            height: 100px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(254, 189, 17, 0.4);
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .sun-spin {
+            animation: spin 10s linear infinite;
+            transform-origin: center;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-bar">
+        <h1 class="text-xl font-bold">یاریگەها کوردی</h1>
+    </div>
+
+    <!-- Small Player -->
+    <div class="player-container" id="mainContainer">
+        <div class="flag-overlay">
+            <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+                <rect width="3" height="0.666" y="0" fill="#ed2024"/>
+                <rect width="3" height="0.666" y="0.666" fill="#fff"/>
+                <rect width="3" height="0.666" y="1.333" fill="#278e3c"/>
+                <circle cx="1.5" cy="1" r="0.25" fill="#febd11"/>
+            </svg>
+        </div>
+
+        <iframe 
+            id="streamFrame" 
+            src="https://11.sportsurges.cc/albaplayer/bein-2/?serv=0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen="true">
+        </iframe>
+    </div>
+
+    <button class="btn-action" onclick="toggleFullScreen()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+        فول سکرین بکە
+    </button>
+
+    <!-- Gift Section with Kurdish Flag -->
+    <div class="gift-section">
+        <p class="text-[#febd11] font-bold mb-4">دیاریا مە بۆ تە 🎁</p>
+        <div class="gift-flag">
+            <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+                <!-- Red -->
+                <rect width="3" height="0.666" y="0" fill="#ed2024"/>
+                <!-- White -->
+                <rect width="3" height="0.666" y="0.666" fill="#fff"/>
+                <!-- Green -->
+                <rect width="3" height="0.666" y="1.333" fill="#278e3c"/>
+                <!-- Sun (Roj) -->
+                <g class="sun-spin">
+                    <circle cx="1.5" cy="1" r="0.28" fill="#febd11"/>
+                    <path d="M 1.5,0.6 V 1.4 M 1.1,1 h 0.8 M 1.2,0.7 1.8,1.3 M 1.2,1.3 1.8,0.7" stroke="#febd11" stroke-width="0.04"/>
+                    <path d="M 1.5,0.6 V 1.4 M 1.1,1 h 0.8 M 1.2,0.7 1.8,1.3 M 1.2,1.3 1.8,0.7" stroke="#febd11" stroke-width="0.04" transform="rotate(45 1.5 1)"/>
+                </g>
+            </svg>
+        </div>
+        <p class="mt-4 text-white font-bold">بژی کوردستان</p>
+    </div>
+
+    <script>
+        function toggleFullScreen() {
+            const container = document.getElementById('mainContainer');
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) container.requestFullscreen();
+                else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
+
